@@ -1,0 +1,62 @@
+//MatchBracket
+<script>
+function Stack() {
+      this.stackData = []; //保存栈内元素，初始化为一个空数组；
+      this.top = 0;//栈顶位置，初始为0；
+      this.push = push;//入栈
+      this.pop = pop;//出栈
+      this.peek = peek;//查看栈顶元素
+      this.clear = clear;//清空栈
+      this.length = length;//栈内存放的元素个数
+  }
+  function push(element){
+        this.stackData[this.top++] = element;
+  }
+  function pop(){
+        return this.stackData[--this.top];
+  }
+  function length(){
+        return this.top;
+  }
+  function peek(){
+        return this.stackData[this.top-1];
+  }
+  function clear(){
+        this.top = 0;
+  }
+
+
+  
+function MatchBracket(BracketString){//函数名：匹配括号，参数：括号字符串
+var s = new Stack();
+var bs = Array.from(BracketString);
+for(var i=0;i<=bs.length-1;i++){
+  switch(bs[i]){
+      case '{':
+      case '[':
+      case '(':
+          s.push(bs[i]);
+          break;
+      case ')':
+      case ']':
+      case '}':
+          var topEle = s.pop();
+          if((topEle=="(" && bs[i]==")") || (topEle=="[" && bs[i]=="]") || (topEle=="{" && bs[i]=="}")){
+             break;
+          }else{
+            console.log("不合法");
+            return;
+          }
+          
+  }
+}
+      if(s.top==0){
+          console.log("合法");
+      }else{
+      console.log("不合法");
+      }
+}
+MatchBracket('()');
+MatchBracket('([]{})');
+MatchBracket('([{]})');
+</script>
