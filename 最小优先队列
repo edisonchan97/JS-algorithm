@@ -1,0 +1,47 @@
+function PriorityQueue(){
+ 	var queueData = [];
+ 	function QueEle(element,priority){
+ 		this.element = element;
+ 		this.priority = priority;
+ 	}
+ 	this.push = function(element,priority){
+ 		var queObj = new QueEle(element,priority);
+ 		if(this.isEmpty()){
+ 			this.push(queObj);
+ 		}else{
+ 			var flag = false;
+ 			for(var i=0;i<queueData.length;i++){
+ 				if(queObj.priority<queueData[i].priority){//判断优先级
+ 					queueData.splice(i, 0, queObj);//在优先级大的前面插入优先级小的
+ 					flag = true;
+ 					break;
+ 				}
+ 			}
+ 			if(!flag){
+ 				queueData.push(queObj);
+ 			}
+ 		}
+ 	}
+ 	this.shift = function(element){//出队操作---在数组头删除元素
+		return shiftElement = queueData.shift(element);
+	};
+	this.front = function(){
+		return queueData[0];
+	};
+	this.size = function(){
+		return queueData.length;
+	};
+	this.isEmpty = function(){
+		return queueData.length == 0;
+	}
+	this.clear = function(){
+		queueData = [];
+	}
+ 	this.print = function(){
+ 		var temp = [];
+ 		for(var j=0;j<queueData.len;j++){
+ 			temp.push(queueData[i].ele);
+ 		}
+ 		console.log(temp.toString());
+ 	}
+ }
