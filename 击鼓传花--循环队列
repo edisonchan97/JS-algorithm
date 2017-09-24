@@ -1,0 +1,52 @@
+<script>
+//击鼓传花--数组实现队列，将出队的元素又入队，形成循环队列。
+function Queue(){
+	var queueData = [];
+	// FIFO=Fisrt In First Out
+	this.push = function(element){//入队操作---在数组尾插入新元素
+		queueData.push(element);
+		return queueData;
+	};
+	this.shift = function(element){//出队操作---在数组头删除元素
+		return shiftElement = queueData.shift(element);
+	};
+	this.front = function(){
+		return queueData[0];
+	};
+	this.size = function(){
+		return queueData.length;
+	};
+	this.isEmpty = function(){
+		return queueData.length == 0;
+	}
+	this.clear = function(){
+		queueData = [];
+	}
+	this.print = function(){
+		console.log(queueData.toString())
+	}
+}
+
+function JGCH(namelists,num){
+ 	var hua = new Queue();
+ 	for(var m=0;m<namelists.length;m++){
+ 		hua.push(namelists[m]);
+ 	};
+ 	var loser;
+ 	while(hua.size()>1){
+ 		for(var n=0;n<num;n++){
+ 			hua.push(hua.shift());
+ 		}
+ 		loser = hua.shift();
+ 		console.log(loser+"淘汰");
+ 	}
+ 	// console.log(hua.front+"赢了");
+ 	return hua.shift();
+ }
+var names=['John','Jack','Camila','Ingrid','Carl'];  
+var winner=JGCH(names,7);  
+console.log('胜利者是：'+winner); 
+var pepole = ['Mr.A','Mr.B','Mr.C','Mr.D','Mr.E','Mr.F'];
+var gameWinner = JGCH(pepole, 12);
+console.log('全场最佳:' + gameWinner);
+</script>
